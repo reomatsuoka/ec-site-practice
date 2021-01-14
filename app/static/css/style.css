@@ -101,7 +101,7 @@ main{
     object-fit: contain;
 }
 
-.order img{
-    height: 100%;
+.order img {
+    height: 100px;
     object-fit: contain;
 }

@@ -13,7 +13,7 @@
                 {% for order_item in order.items.all %}
                     <div class="row">
                         <div class="col-md-3 text-center">
-                            <img src="/{{ order_item.item.image.url }}" class="img-field" alt="{{ order_item.item.title }}">
+                            <img src="/{{ order_item.item.image.url }}" class="img-fluid" alt="{{ order_item.item.title }}">
                         </div>
                         <div class="col-md-6">
                             <h5>{{ order_item.item.title }}</h5>
@@ -21,9 +21,9 @@
                                 数量：
                                 <a href=""><span class="badge badge-warning">-</span></a>
                                 {{ order_item.quantity }}
-                                <a href="{% url 'additem' order_item.item.skug %}"><span class="badge badge-warning">+</span></a>
+                                <a href="{% url 'additem' order_item.item.slug %}"><span class="badge badge-warning">+</span></a>
                             </p>
-                            <a href="">
+                            <a href="{% url 'removeitem' orderitem.item.slug %}">
                                 <span class="badge badge-danger">削除</span>
                             </a>
                         </div>
@@ -43,7 +43,20 @@
                     {% empty %}
                     <p class="mb-3">カートは空です</p>
                 {% endfor %}
-                <a href="/" class="btn-btn-primary">買い物を続ける</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body text-center px-2 py-3">
+                {% if order.get_total %}
+                    <p>小計：<span class="font-weight-bold">{{ order.get_total }}</span>円</p>
+                    <div class="mb-3">
+                        <a class="btn btn-warning" href="">レジに進む</a>
+                    </div>
+                {% endif %}
+                <a class="btn btn-primary" href="/">買い物を続ける</a>
             </div>
         </div>
     </div>
