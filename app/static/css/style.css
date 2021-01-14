@@ -100,3 +100,8 @@ main{
     height: 350px;
     object-fit: contain;
 }
+
+.order img{
+    height: 100%;
+    object-fit: contain;
+}
